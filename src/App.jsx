@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function App() {
-    const [tarefas, setTarefas] = useState([]);
+    const [tarefas, setTarefas] = useState([]); 
     const [usuarios, setUsuarios] = useState([]);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ function App() {
                     {tarefas
                         .filter(tarefa => tarefa.completed)
                         .map(tarefa => (
-                            <li key={tarefa.id} style={{ textDecoration: 'line-through' }}>
+                                <li key={tarefa.id} style={{ textDecoration: 'line-through' }}>
                                 {usuariosMap[tarefa.userId]}: {tarefa.title}
                             </li>
                         ))}
@@ -49,7 +49,7 @@ function App() {
                     {tarefas
                         .filter(tarefa => !tarefa.completed)
                         .map(tarefa => (
-                            <li key={tarefa.id}>
+                            <li key={tarefa.id} onClick={tarefa.completed}>
                                 {usuariosMap[tarefa.userId]}: {tarefa.title}
                             </li>
                         ))}
