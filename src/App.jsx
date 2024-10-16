@@ -27,6 +27,13 @@ function App() {
         usuariosMap[usuario.id] = usuario.name;
     });
 
+    function Concluir(id) {
+        setTarefas(tarefasAnteriores =>
+            tarefasAnteriores.map(tarefa =>
+                tarefa.id === id ? { ...tarefa, completed: !tarefa.completed } : tarefa
+            )
+        );
+    }
     return (
         <div>
             <h1>Lista de Tarefas</h1>
@@ -49,12 +56,13 @@ function App() {
                     {tarefas
                         .filter(tarefa => !tarefa.completed)
                         .map(tarefa => (
-                            <li key={tarefa.id} onClick={tarefa.completed}>
+                            <li key={tarefa.id} onClick={() => Concluir(tarefa.id)}>
                                 {usuariosMap[tarefa.userId]}: {tarefa.title}
                             </li>
                         ))}
                 </ul>
             </div>
+
         </div>
     );
 }
